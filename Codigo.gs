@@ -380,7 +380,7 @@ function abrirFlyer() {
         window.open(
           u,
           'FlyerWindow',
-          'width=980,height=900,left=120,top=40,resizable=yes,scrollbars=no'
+          'width=700,height=1100,left=610,top=0,resizable=yes,scrollbars=no'
         );
         google.script.host.close();
       <\/script>
