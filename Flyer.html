@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>COCKTAIL SUNSET | FLYER vSTYLE</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -16,8 +16,8 @@
     }
 
     body {
-      background: radial-gradient(circle at 50% 20%, #fffde8 0%, #fcfce3 60%, #f3f3d9 100%);
-      font-family: "Poppins", sans-serif;
+      background: #ffffff;
+      font-family: "Manrope", "Poppins", sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -29,132 +29,150 @@
     .layout {
       width: min(96vw, 700px);
       height: min(96vh, 1100px);
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: auto auto 1fr;
+      display: flex;
+      flex-direction: column;
       justify-items: center;
       align-items: start;
-      gap: 18px;
-      padding: 20px 24px 28px;
-      border-radius: 20px;
+      gap: 20px;
+      padding: 36px 30px 34px;
+      border-radius: 56px;
+      background: #FEFDE6;
+      box-shadow:
+        0 28px 60px rgba(26, 53, 86, 0.16),
+        0 8px 24px rgba(26, 53, 86, 0.09);
     }
 
     .left {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 18px;
+      gap: 14px;
       width: 100%;
     }
 
-    .left h2 {
+    .left h1 {
       color: #0C2C55;
-      font-size: clamp(2.0rem, 3.6vw, 3.0rem);
-      font-weight: 700;
+      font-size: clamp(2.1rem, 4.2vw, 3.2rem);
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-align: center;
-      margin-top: 6px;
+      margin-top: 2px;
+      line-height: 1.05;
+    }
+
+    .instruction {
+      color: #0C2C55;
+      font-size: clamp(0.95rem, 1.8vw, 1.18rem);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      text-align: center;
+      max-width: 90%;
+      line-height: 1.35;
     }
 
     .buttons {
       display: flex;
-      gap: 28px;
+      gap: 18px;
       align-items: center;
       justify-content: center;
       margin-bottom: 2px;
+      width: 100%;
+      flex-wrap: wrap;
     }
 
     .btn-circle {
-      width: 122px;
-      height: 122px;
-      border-radius: 50%;
+      width: 206px;
+      height: 60px;
+      border-radius: 999px;
       border: none;
-      background: #0A8274;
+      background: linear-gradient(135deg, #1fc8c3 0%, #39d5ab 100%);
       color: #ffffff;
-      font-size: 1.0rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
+      font-size: 1.02rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       cursor: pointer;
       box-shadow:
-        0 14px 30px rgba(10,130,116,.45),
-        0 0 24px rgba(10,130,116,.35);
+        0 12px 24px rgba(31, 200, 195, .28),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.08);
       transition:
-        width 0.45s cubic-bezier(0.34, 1.8, 0.64, 1),
-        height 0.45s cubic-bezier(0.34, 1.8, 0.64, 1),
-        border-radius 0.45s ease,
+        filter 0.3s ease,
         background 0.35s ease,
         box-shadow 0.35s ease,
-        transform 0.35s ease;
+        transform 0.25s ease;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 0;
+      padding: 0 16px;
       overflow: hidden;
       white-space: nowrap;
     }
 
     .btn-circle:hover {
-      transform: scale(1.16);
+      transform: translateY(-2px) scale(1.03);
       box-shadow:
-        0 20px 45px rgba(10,130,116,.62),
-        0 0 36px rgba(10,130,116,.52);
+        0 18px 32px rgba(31, 200, 195, .33),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.08);
     }
 
     .btn-circle.copied {
-      width: 162px;
-      height: 58px;
-      border-radius: 60px;
-      background: #00BFFF;
+      background: linear-gradient(135deg, #22c5ef 0%, #25d7bd 100%);
       box-shadow:
-        0 0 22px rgba(0, 191, 255, 0.8),
-        0 0 50px rgba(0, 191, 255, 0.5),
-        0 12px 24px rgba(0, 191, 255, 0.35);
-      transform: scale(1.1);
+        0 16px 36px rgba(34, 197, 239, 0.42),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.08);
+      animation: copyBounce 0.48s ease;
+    }
+
+    @keyframes copyBounce {
+      0% { transform: scale(1); }
+      45% { transform: scale(1.08); }
+      100% { transform: scale(1); }
     }
 
     .right {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
       width: 100%;
+      flex: 1;
+      min-height: 0;
     }
 
     .right h2 {
       color: #0C2C55;
-      font-size: clamp(2.0rem, 3.6vw, 3.0rem);
+      font-size: clamp(0.95rem, 1.9vw, 1.18rem);
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-align: center;
-      line-height: 1.1;
-      margin-top: 2px;
+      line-height: 1.25;
+      margin-top: 0;
     }
 
     .card-wrapper {
-      width: min(78vw, 360px);
+      width: min(78vw, 430px);
       aspect-ratio: 2 / 3;
       position: relative;
-      border-radius: 24px;
+      border-radius: 42px;
       transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
       perspective: 900px;
     }
 
     .card-wrapper:hover {
-      transform: scale(1.04) translateY(-8px);
+      transform: scale(1.015) translateY(-3px);
     }
 
     #card {
       width: 100%;
       height: 100%;
-      border-radius: 24px;
+      border-radius: 42px;
       overflow: hidden;
       box-shadow:
-        0 26px 60px rgba(0,0,0,.22),
-        0 0 28px rgba(255,214,120,.30);
+        0 18px 40px rgba(0,0,0,.14),
+        0 8px 20px rgba(0,0,0,.10);
       transition: transform 0.15s ease-out, box-shadow 0.4s ease, filter 0.4s ease;
       position: relative;
       background: #ffffff;
@@ -163,9 +181,9 @@
 
     .card-wrapper:hover #card {
       box-shadow:
-        0 38px 85px rgba(0,0,0,.32),
-        0 0 44px rgba(255,214,120,.45);
-      filter: brightness(1.12) saturate(1.08);
+        0 25px 60px rgba(0,0,0,.18),
+        0 10px 24px rgba(0,0,0,.11);
+      filter: brightness(1.02);
     }
 
     #card img {
@@ -173,28 +191,25 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      border-radius: 24px;
+      border-radius: 42px;
       user-select: none;
       -webkit-user-drag: element;
       pointer-events: auto;
-
-      /* blur por defecto */
-      filter: blur(3.8px) saturate(1.02);
-      transform: scale(1.03);
-      transition: filter .35s ease, transform .35s ease;
+      transition: transform .3s ease, opacity .25s ease;
+      cursor: grab;
     }
 
-    /* hover = desblur */
-    .card-wrapper:hover #card img {
-      filter: blur(0px) saturate(1.05);
-      transform: scale(1.00);
+    #card img.dragging {
+      transform: scale(0.95) translateY(8px);
+      opacity: 0.45;
+      cursor: grabbing;
     }
 
     .card-overlay {
       position: absolute;
       inset: 0;
       z-index: 10;
-      border-radius: 24px;
+      border-radius: 42px;
       background: transparent;
       pointer-events: none;
     }
@@ -206,8 +221,7 @@
       background: rgba(12, 44, 85, 0.10);
       box-shadow:
         0 0 0 6px rgba(12,44,85,.15),
-        0 45px 90px rgba(0,0,0,.35),
-        0 0 56px rgba(255,214,120,.55);
+        0 35px 72px rgba(0,0,0,.25);
     }
 
     @media (max-width: 900px) {
@@ -215,11 +229,21 @@
         width: 98vw;
         height: 98vh;
         gap: 14px;
-        padding: 16px;
+        padding: 22px 16px 18px;
+        border-radius: 38px;
       }
-      .buttons { gap: 20px; }
-      .btn-circle { width: 108px; height: 108px; font-size: .95rem; }
-      .card-wrapper { width: min(84vw, 340px); }
+      .buttons { gap: 12px; }
+      .btn-circle {
+        width: 47%;
+        min-width: 138px;
+        height: 54px;
+        font-size: .86rem;
+      }
+      .card-wrapper {
+        width: min(84vw, 350px);
+        border-radius: 34px;
+      }
+      #card, #card img, .card-overlay { border-radius: 34px; }
     }
   </style>
 </head>
@@ -227,7 +251,8 @@
 
   <div class="layout">
     <div class="left">
-      <h2>Copia y pega el mensaje</h2>
+      <h1>Sunset Cocktail</h1>
+      <p class="instruction">Copia el mensaje y pega, arrastra la imagen para enviar.</p>
       <div class="buttons">
         <button class="btn-circle" id="btn-en" data-original="Inglés">Inglés</button>
         <button class="btn-circle" id="btn-es" data-original="Español">Español</button>
@@ -294,8 +319,8 @@ Este viernes 17 de julio, lo invitamos a nuestra exclusiva experiencia de cócte
       const y = e.clientY - rect.top;
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -7;
-      const rotateY = ((x - centerX) / centerX) * 7;
+      const rotateX = ((y - centerY) / centerY) * -3;
+      const rotateY = ((x - centerX) / centerX) * 3;
       card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
     wrapper.addEventListener('mouseleave', function() {
@@ -305,10 +330,14 @@ Este viernes 17 de julio, lo invitamos a nuestra exclusiva experiencia de cócte
     // DRAG OUT (como archivo/enlace)
     flyer.addEventListener('dragstart', (e) => {
       e.dataTransfer.effectAllowed = 'copy';
+      flyer.classList.add('dragging');
       e.dataTransfer.setData('text/uri-list', flyer.src);
       e.dataTransfer.setData('text/plain', flyer.src);
       e.dataTransfer.setData('text/html', '<img src="' + flyer.src + '">');
       try { e.dataTransfer.setDragImage(flyer, 80, 80); } catch (_) {}
+    });
+    flyer.addEventListener('dragend', () => {
+      flyer.classList.remove('dragging');
     });
 
     // Evitar abrir nueva pestaña al soltar
