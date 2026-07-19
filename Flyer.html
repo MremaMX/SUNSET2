@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>COCKTAIL SUNSET | FLYER vSTYLE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 20%, #fffde8 0%, #fcfce3 60%, #f3f3d9 100%);
+      font-family: "Poppins", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      -webkit-user-select: none;
+      color: #0C2C55;
+    }
+
+    .layout {
+      width: min(96vw, 1100);
+      height: min(96vh, 800px);
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto 1fr;
+      justify-items: center;
+      align-items: start;
+      gap: 18px;
+      padding: 20px 24px 28px;
+      border-radius: 20px;
+    }
+
+    .left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      width: 100%;
+    }
+
+    .left h2 {
+      color: #0C2C55;
+      font-size: clamp(2.0rem, 3.6vw, 3.0rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      text-align: center;
+      margin-top: 6px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2px;
+    }
+
+    .btn-circle {
+      width: 122px;
+      height: 122px;
+      border-radius: 50%;
+      border: none;
+      background: #0A8274;
+      color: #ffffff;
+      font-size: 1.0rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow:
+        0 14px 30px rgba(10,130,116,.45),
+        0 0 24px rgba(10,130,116,.35);
+      transition:
+        width 0.45s cubic-bezier(0.34, 1.8, 0.64, 1),
+        height 0.45s cubic-bezier(0.34, 1.8, 0.64, 1),
+        border-radius 0.45s ease,
+        background 0.35s ease,
+        box-shadow 0.35s ease,
+        transform 0.35s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .btn-circle:hover {
+      transform: scale(1.16);
+      box-shadow:
+        0 20px 45px rgba(10,130,116,.62),
+        0 0 36px rgba(10,130,116,.52);
+    }
+
+    .btn-circle.copied {
+      width: 162px;
+      height: 58px;
+      border-radius: 60px;
+      background: #00BFFF;
+      box-shadow:
+        0 0 22px rgba(0, 191, 255, 0.8),
+        0 0 50px rgba(0, 191, 255, 0.5),
+        0 12px 24px rgba(0, 191, 255, 0.35);
+      transform: scale(1.1);
+    }
+
+    .right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .right h2 {
+      color: #0C2C55;
+      font-size: clamp(2.0rem, 3.6vw, 3.0rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      text-align: center;
+      line-height: 1.1;
+      margin-top: 2px;
+    }
+
+    .card-wrapper {
+      width: min(78vw, 360px);
+      aspect-ratio: 2 / 3;
+      position: relative;
+      border-radius: 24px;
+      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+      perspective: 900px;
+    }
+
+    .card-wrapper:hover {
+      transform: scale(1.04) translateY(-8px);
+    }
+
+    #card {
+      width: 100%;
+      height: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow:
+        0 26px 60px rgba(0,0,0,.22),
+        0 0 28px rgba(255,214,120,.30);
+      transition: transform 0.15s ease-out, box-shadow 0.4s ease, filter 0.4s ease;
+      position: relative;
+      background: #ffffff;
+      border: 2px dashed transparent;
+    }
+
+    .card-wrapper:hover #card {
+      box-shadow:
+        0 38px 85px rgba(0,0,0,.32),
+        0 0 44px rgba(255,214,120,.45);
+      filter: brightness(1.12) saturate(1.08);
+    }
+
+    #card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 24px;
+      user-select: none;
+      -webkit-user-drag: element;
+      pointer-events: auto;
+
+      /* blur por defecto */
+      filter: blur(3.8px) saturate(1.02);
+      transform: scale(1.03);
+      transition: filter .35s ease, transform .35s ease;
+    }
+
+    /* hover = desblur */
+    .card-wrapper:hover #card img {
+      filter: blur(0px) saturate(1.05);
+      transform: scale(1.00);
+    }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      border-radius: 24px;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    #card.drag-over {
+      outline: 3px dashed #0C2C55;
+      outline-offset: -8px;
+      border-color: #0C2C55;
+      background: rgba(12, 44, 85, 0.10);
+      box-shadow:
+        0 0 0 6px rgba(12,44,85,.15),
+        0 45px 90px rgba(0,0,0,.35),
+        0 0 56px rgba(255,214,120,.55);
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        width: 98vw;
+        height: 98vh;
+        gap: 14px;
+        padding: 16px;
+      }
+      .buttons { gap: 20px; }
+      .btn-circle { width: 108px; height: 108px; font-size: .95rem; }
+      .card-wrapper { width: min(84vw, 340px); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="layout">
+    <div class="left">
+      <h2>Copia y pega el mensaje</h2>
+      <div class="buttons">
+        <button class="btn-circle" id="btn-en" data-original="Inglés">Inglés</button>
+        <button class="btn-circle" id="btn-es" data-original="Español">Español</button>
+      </div>
+    </div>
+
+    <div class="right">
+      <h2>Arrastra la imagen y suelta</h2>
+      <div class="card-wrapper" id="card-wrapper">
+        <div id="card">
+          <img
+            id="flyer"
+            draggable="true"
+            src="https://lh3.googleusercontent.com/d/1aQz3pkG9wEWtK5YUkE3Zm40Gm8kBSi7p"
+            alt="Flyer COCKTAIL SUNSET">
+          <div class="card-overlay" id="card-overlay"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const TEXTS = {
+      en: `Dear Guest, Looking for the perfect Friday plan? 🌅
+
+This Friday, July 17th, we invite you to our exclusive Sunset Cocktail experience at JOIA Paraíso. Join us to enjoy premium drinks and the best golden hour views of the resort. 🥂
+We would be happy to receive you!`,
+      es: `Estimado huésped, ¿Busca el plan perfecto para el viernes? 🌅
+
+Este viernes 17 de julio, lo invitamos a nuestra exclusiva experiencia de cócteles al atardecer en JOIA Paraíso. Acompáñenos a disfrutar de bebidas premium y las mejores vistas del resort al atardecer. 🥂
+¡Nos encantaría recibirlo!`
+    };
+
+    async function copyText(lang, btn) {
+      try { await navigator.clipboard.writeText(TEXTS[lang]); }
+      catch (_) {
+        const ta = document.createElement('textarea');
+        ta.value = TEXTS[lang];
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+      const original = btn.dataset.original;
+      btn.textContent = 'Copiado';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.textContent = original;
+      }, 1400);
+    }
+
+    document.getElementById('btn-en').addEventListener('click', function() { copyText('en', this); });
+    document.getElementById('btn-es').addEventListener('click', function() { copyText('es', this); });
+
+    const card = document.getElementById('card');
+    const wrapper = document.getElementById('card-wrapper');
+    const flyer = document.getElementById('flyer');
+
+    // Tilt
+    wrapper.addEventListener('mousemove', function(e) {
+      const rect = wrapper.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -7;
+      const rotateY = ((x - centerX) / centerX) * 7;
+      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+    wrapper.addEventListener('mouseleave', function() {
+      card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
+
+    // DRAG OUT (como archivo/enlace)
+    flyer.addEventListener('dragstart', (e) => {
+      e.dataTransfer.effectAllowed = 'copy';
+      e.dataTransfer.setData('text/uri-list', flyer.src);
+      e.dataTransfer.setData('text/plain', flyer.src);
+      e.dataTransfer.setData('text/html', '<img src="' + flyer.src + '">');
+      try { e.dataTransfer.setDragImage(flyer, 80, 80); } catch (_) {}
+    });
+
+    // Evitar abrir nueva pestaña al soltar
+    window.addEventListener('dragover', (e) => { e.preventDefault(); }, false);
+    window.addEventListener('drop', (e) => { e.preventDefault(); }, false);
+    document.addEventListener('dragover', (e) => { e.preventDefault(); }, true);
+    document.addEventListener('drop', (e) => { e.preventDefault(); }, true);
+
+    // DROP IN
+    card.addEventListener('dragenter', (e) => {
+      e.preventDefault();
+      card.classList.add('drag-over');
+    });
+
+    card.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      if (e.dataTransfer) e.dataTransfer.dropEffect = 'copy';
+      card.classList.add('drag-over');
+    });
+
+    card.addEventListener('dragleave', () => {
+      card.classList.remove('drag-over');
+    });
+
+    card.addEventListener('drop', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      card.classList.remove('drag-over');
+
+      const file = e.dataTransfer?.files?.[0];
+      if (!file || !file.type.startsWith('image/')) return;
+
+      const reader = new FileReader();
+      reader.onload = (ev) => { flyer.src = ev.target.result; };
+      reader.readAsDataURL(file);
+    });
+
+    // Pegar imagen con Ctrl+V
+    window.addEventListener('paste', (e) => {
+      const items = e.clipboardData?.items || [];
+      for (const item of items) {
+        if (item.type && item.type.startsWith('image/')) {
+          const file = item.getAsFile();
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = (ev) => { flyer.src = ev.target.result; };
+          reader.readAsDataURL(file);
+          break;
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
